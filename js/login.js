@@ -1,4 +1,5 @@
 function logIn(){
+    event.preventDefault();
     let _usuario = $("#txtUsuarioLogIn").val(); /*lee datos de campos*/
     let _clave = $("#txtClaveLogIn").val();
    _usuario = _usuario.replace(" ","");
@@ -6,11 +7,9 @@ function logIn(){
     if(_usuario != "" && _clave != ""){
         _userIsLogged = true; /*hay usuario logueado*/
         localStorage.setItem("logged",true);
-      //  window.location.href = "index.html";
-        return true;
+        window.location = "index.html";
     }else{
         alert("Los campos no pueden estar vacios");
-        return false;
     }
 }
 //Función que se ejecuta una vez que se haya lanzado el evento de
