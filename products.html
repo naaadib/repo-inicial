@@ -21,6 +21,7 @@
         <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
         <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
         <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+        <span class="py-2 d-none d-md-inline-block" id="spanUsuario"></span>
       </div>
     </nav>
     <main role="main" class="pb-5">
@@ -29,6 +30,45 @@
           <p class="lead">Verás aquí los productos del sitio.</p>
       </div>
       <div class="container">
+        <div class="row">
+          <div class="col text-right">
+              <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
+                  <label class="btn btn-light active" id="precioAsc" >
+                      <input type="radio" name="options" autocomplete="off" checked>Min
+                  </label>
+                  <label class="btn btn-light" id="precioDesc" >
+                      <input type="radio" name="options" autocomplete="off">Max
+                  </label>
+                  <label class="btn btn-light" id="relevancia" >
+                      <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Relevancia
+                  </label>
+              </div>
+          </div>
+      </div>
+      <div class="row justify-content-end">
+        <div class="col-md-6">
+          <input type="search" id="textSearch" class="form-control" placeholder="Buscar..."/>
+        </div>
+        <div class="col-md-6 col-sm-12 mb-1 container">
+          <div class="row container p-0 m-0">
+            <div class="col">
+              <p class="font-weight-normal text-right my-2">Cant.</p>
+            </div>
+            <div class="col">
+              <input class="form-control" type="number" placeholder="min." id="filtrarPorPrecioMin">
+            </div>
+            <div class="col">
+              <input class="form-control" type="number" placeholder="máx." id="filtrarPorPrecioMax">
+            </div>
+            <div class="col-3 p-0">
+              <div class="btn-group" role="group">
+                <button class="btn btn-light btn-block" id="filtrarPorPrecio">Filtrar</button>
+                <button class="btn btn-link btn-sm" id="limpiarFiltro">Limpiar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>      
           <div class="row">
               <div class="list-group" id="prod-list-container">
 

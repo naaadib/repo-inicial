@@ -7,6 +7,7 @@ function logIn(){
     if(_usuario != "" && _clave != ""){
         _userIsLogged = true; /*hay usuario logueado*/
         localStorage.setItem("logged",true);
+        localStorage.setItem("userName", _usuario);
         window.location = "index.html";
     }else{
         alert("Los campos no pueden estar vacios");
