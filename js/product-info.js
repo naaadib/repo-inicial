@@ -1,4 +1,5 @@
 var product = {};
+var products;
 
 function showImagesGallery(array){
 
@@ -58,6 +59,24 @@ function showComments(array){
     document.getElementById("divComentariosInfoProd").innerHTML = htmlContentToAppend;
 }
 
+function showRelatedProducts(productInfo,array){
+
+    let htmlContentToAppend = "";
+
+    for(let i = 0; i < productInfo.relatedProducts.length; i++){
+        let relatedPosition = productInfo.relatedProducts[i];
+
+        htmlContentToAppend += `
+        <div class="col-lg-3 col-md-4 col-6">
+            <div class="d-block mb-4 h-100">
+                <img class="img-fluid img-thumbnail" src="` + array[relatedPosition].imgSrc + `" alt="">
+            </div>
+        </div>
+        `
+
+        document.getElementById("relatedProd").innerHTML = htmlContentToAppend;
+    }
+}
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
@@ -83,9 +102,18 @@ document.addEventListener("DOMContentLoaded", function(e){
             productCategoryHTML.innerHTML = product.category;
             productSoldCountHTML.innerHTML = product.soldCount;
 
+//Despues de cargar la info del product llamo al array de products para poder mostrar los relatedProducts
+            getJSONData(PRODUCTS_URL).then(function(resultObj){
+                if (resultObj.status === "ok")
+                {
+                    products = resultObj.data;
+                    showRelatedProducts(product,products);
+                }
+            });
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);
         }
+
     });
     getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj){
         if (resultObj.status === "ok")
@@ -95,6 +123,7 @@ document.addEventListener("DOMContentLoaded", function(e){
             showComments(comments);
         }
     });
+    
 });
 
 document.getElementById("btnComment").addEventListener("click", function(e){
