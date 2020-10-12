@@ -62,6 +62,20 @@ document.addEventListener("DOMContentLoaded", function(e){
             
             showCart(cartInfo);
             $('.delete-btn').on('click',function(){
+                let name = $(this).parent().parent().find('.articleName').html();
+                let oldProductPrice = 0;
+                for(let i=0; i < cartInfo.articles.length; i++){
+                    if(name == cartInfo.articles[i].name){
+                        oldProductPrice = cartInfo.articles[i].count * parseInt(cartInfo.articles[i].unitCost);
+                        if(cartInfo.articles[i].currency == 'USD'){
+                            cartInfo.subtotal -= oldProductPrice * 40;
+                        }else{
+                            cartInfo.subtotal -= oldProductPrice;
+                        }
+                    }
+                }
+                
+                $('#subtotalPrice').html(cartInfo.subtotal);
                 $(this).parent().parent().remove();
             });
             
