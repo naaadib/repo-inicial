@@ -12,6 +12,7 @@
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  
 
   <style>
     .bd-placeholder-img {
@@ -66,16 +67,55 @@
     <div class="shopping-cart">
       <!-- Title -->
       <div class="title">
-        Carrito de compras
+        <h3> Carrito de compras</h3>
       </div>
       <div id="product-list">
 
       </div>
-      <div id="cart-total">
+      <div id="seleccionEnvio" class="title-border-top">
+        <h3>Tipo de envío</h3>
+
+        <input type="radio" id="envioPremium" name="tipoEnvio" value="envioPremium">
+        <label for="envioPremium">Premium 2 a 5 días (15%)</label><br>
+        <input type="radio" id="envioExpress" name="tipoEnvio" value="envioExpress">
+        <label for="envioExpress">Express 5 a 8 días (7%)</label><br>
+        <input type="radio" id="envioStandard" name="tipoEnvio" value="envioStandard">
+        <label for="envioStandard">Standard 12 a 15 días (5%) </label>
+
+        <h3 id="hcarrito">Dirección de envío</h3>
+        <form>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="direccionCalle">Calle</label>
+              <input type="text" class="form-control" id="direccionCalle" name="direccionCalle">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="direccionNumero">Número</label>
+              <input type="text" class="form-control" id="direccionNumero" name="direccionNumero">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="direccionEsquina">Esquina</label>
+              <input type="text" class="form-control" id="direccionEsquina" name="direccionEsquina">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div id="cart-total" class="title-border-top">
         
       </div>
     </div>
+    <div class="title-border-top" id="hcarrito">
+      <h3>Forma de pago</h3>
+      <p id="mostrarFormaPago">No ha seleccionado <a href="#" data-toggle="modal" data-target="#modalPago">Seleccionar</a></p> 
+      <p id="mostrarPagoCredito" style="display:none">Tarjeta de crédito <a href="#" data-toggle="modal" data-target="#modalPago">Seleccionar</a></p>
+      <p id="mostrarPagoTransf" style="display:none">Transferencia bancaria <a href="#" data-toggle="modal" data-target="#modalPago">Seleccionar</a></p>
+    </div>
+
+    <button type="button" id="finishPurchase" class="btn btn-primary float-right">Finalizar compra</button>
   </div>
+  
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
@@ -84,8 +124,64 @@
       <div></div>
     </div>
   </div>
+
+
+  <div class="modal fade" id="modalPago" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Forma de pago</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row payment-type-option">
+              <input type="radio" id="credito" name="tipoPago" value="credito">
+              <label for="credito">Tarjeta de crédito</label>
+            </div>
+            <form id="formCredito" style="display:none">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="nroTarjeta">Numero de tarjeta</label>
+                  <input type="text" class="form-control" id="nroTarjeta" name="nroTarjeta">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="codSeg">Código de seg.</label>
+                  <input type="text" class="form-control" id="codSeg" name="codSeg">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="vto">Vencimiento (MM/AA)</label>
+                  <input type="text" class="form-control" id="vto" name="vto">
+                </div>
+              </div>
+            </form>
+            <div class="row payment-type-option">
+              <input type="radio" id="transferencia" name="tipoPago" value="transferencia">
+              <label for="transferencia">Transferencia bancaria </label>  
+            </div>
+            <form id="formTransferencia" style="display:none">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="nroCuenta">Numero de cuenta</label>
+                  <input type="text" class="form-control" id="nroCuenta" name="nroCuenta">
+                </div>
+              </div>  
+            </form>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="js/dropzone.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
