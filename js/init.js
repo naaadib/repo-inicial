@@ -52,7 +52,10 @@ document.addEventListener("DOMContentLoaded", function(e){
   document.getElementById("cerrarSesion").addEventListener("click",function(){
     localStorage.setItem("logged",false);
     localStorage.setItem("userName", null);
+    localStorage.setItem("userInfo",'');
     window.location.href = "login.html";
+    
   });
+  
 });
 
